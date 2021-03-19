@@ -8,7 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @WebServlet(name = "CalcServlet", urlPatterns = "")
 public class CalcServlet extends HttpServlet {
-    private ThreadLocalRandom rand;
     private int number1;
     private int number2;
     private int sum;
