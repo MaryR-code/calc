@@ -13,13 +13,13 @@ public class CalcServlet extends HttpServlet {
     private Player player = new Player();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var rand = ThreadLocalRandom.current();
-        player.setNum1(rand.nextInt(1, 10));
-        player.setNum2(rand.nextInt(1, 10));
-        request.setAttribute(Player.ATTR, player);
-        request.setAttribute("num1", player.getNum1());
-        request.setAttribute("num2", player.getNum2());
+        player.setNum1(rand.nextInt(100, 1000));
+        player.setNum2(rand.nextInt(100, 1000));
+        //request.getSession().setAttribute(Player.ATTR, player);
+        request.getSession().setAttribute("num1", player.getNum1());
+        request.getSession().setAttribute("num2", player.getNum2());
         request.getRequestDispatcher("/WEB-INF/calc.jsp")
                 .forward(request, response);
     }
@@ -27,16 +27,18 @@ public class CalcServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var playerSum = Integer.parseInt(request.getParameter("playerSum"));
-        request.getAttribute(Player.ATTR);
-        var sum = player.getNum1() + player.getNum2();
+        //request.getSession().getAttribute(Player.ATTR);
+        var num1 = (int) request.getSession().getAttribute("num1");
+        var num2 = (int) request.getSession().getAttribute("num2");
+        var sum = num1 + num2;
         var msg = "";
         if (playerSum == sum) {
             msg = "Correct!";
         } else {
             msg = "Not correct!";
         }
-        request.setAttribute("num1", player.getNum1());
-        request.setAttribute("num2", player.getNum2());
+        request.getSession().setAttribute("num1", num1);
+        request.getSession().setAttribute("num2", num2);
         request.setAttribute("sum", sum);
         request.setAttribute("msg", msg);
         request.getRequestDispatcher("/WEB-INF/answer.jsp")

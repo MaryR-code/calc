@@ -1,7 +1,7 @@
 package net.gamedev.calc.model;
 
 public class Player {
-    public static final String ATTR = "player";
+    //public static final String ATTR = "player";
     private int num1;
     private int num2;
 
