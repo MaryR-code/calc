@@ -8,11 +8,11 @@
     <title>Answer</title>
 </head>
 <body>
-<div class="w3-display-container" style="height:50%; width:50%">
+<div class="w3-display-container" style="height:50%; width:75%">
     <div class="w3-display-middle">
         <form>
             <h1> ${msg} </h1>
-            <h2> ${num1} + ${num2} = ${sum} </h2>
+            <h2> ${player.num1} + ${player.num2} = ${sum} </h2>
         </form>
     </div>
 </div>

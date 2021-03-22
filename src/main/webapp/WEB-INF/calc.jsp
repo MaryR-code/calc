@@ -8,11 +8,11 @@
     <title>Calculator</title>
 </head>
 <body>
-<div class="w3-display-container" style="height:50%; width:50%">
+<div class="w3-display-container" style="height:50%; width:75%">
     <div class="w3-display-middle">
         <form method="post">
             <h2> Do the math: </h2>
-            <h1> ${num1} + ${num2} = </h1>
+            <h1> ${player.num1} + ${player.num2} = </h1>
             <input type="number" name="playerSum" class="w3-input w3-border w3-light-grey" style="width:50%">
             <br/>
             <button type="submit" class="w3-btn w3-green w3-large">Check</button>
